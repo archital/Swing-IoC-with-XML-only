@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+        
+      <context:property-placeholder location="classpath:newproperties.properties" />
+     
+      <bean id="contactsServiceImplement" class="home.luxoft.myswingioc.ContactsServiceImplement">
+           <!--В переменну "maxsize " записываем максимальный размер записной книги -->
+  <property name="conlistprop" value="${maxsize}"/>   
+   <property name="contactsDao" ref="contactsDao"/>        
+</bean>
+          
+
+    
+    <bean id="contactsDao" class="home.luxoft.myswingioc.ContactsDaoImplement" > 
+        <constructor-arg index="0"> 
+            <list><ref bean="contact"/>
+             <ref bean="contact2"/> </list>            
+        </constructor-arg>
+        </bean>
+    
+                <bean id="contact" class="home.luxoft.myswingioc.Contact" scope="prototype"> 
+                    <constructor-arg index="0"> 
+                             <value>0956781112</value>  
+                    </constructor-arg>
+       <constructor-arg index="1"> 
+               <value>"Azarov"</value>
+       </constructor-arg>
+                </bean>    
+
+      <bean id="contact2" class="home.luxoft.myswingioc.Contact" scope="prototype"> 
+                    <constructor-arg index="0">       
+                             <value>0764512815</value>  
+                    </constructor-arg>
+       <constructor-arg index="1"> 
+               <value>"Yanukovich"</value>
+       </constructor-arg>
+                </bean>       
+    
+    <bean id="contact3" class="home.luxoft.myswingioc.Contact" scope="prototype"> 
+                    <constructor-arg index="0"> 
+                             <value>0896541232</value>  
+                    </constructor-arg>
+       <constructor-arg index="1"> 
+               <value>"Puttler"</value>
+       </constructor-arg>
+                </bean>  
+
+ 
+    
+    
+    
+</beans>
+
